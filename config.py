@@ -10,69 +10,72 @@
 
 ------------------------------------------------------------------
 
-
 '''
 
 
 DATABASE_NAME = "pet_data.db"
 
-# keys cat , dog , fox,horse, slime
-#TODO : IF SOMEONE WNAT TO ADD OWN PET THEY CAN DO 
-
-
+# keys cat , dog , fox, horse
+# TODO list: IF SOMEONE WNAT TO ADD OWN PET THEY CAN DO 
 PET_CATALOG = {
-    "CAT" : {
-        "specie"
+    "cat": {
+        "name": "CAT",
+        "emoji" : "🐱",
+        "ASSEST URL": "assets/pets/bobcat.png",
     },
-    "DOG": {
-
+    "dog": {
+        "name": "DOG",
+        "emoji": "🐶",
+        "ASSEST URL": "assets/pets/dog-bed-cushion.png",
     },
-    "FOX" : {
-
-       },
-    "HORSE" :{
-
+    "fox": {
+        "name": "FOX",
+        "emoji": "🦊",
+        "ASSEST URL": "assets/pets/kitsune-fox-spirit.png",
     },
-    "SLIME " :{
-
+    "horse": {
+        "name": "HORSE",
+        "emoji": "🐴",
+        "ASSEST URL": "assets/pets/farm-horse-brown.png",
     }
+
 }
 
 
 # RANK TITLE FOR A LEVEL 
-def get_evolution_title(level : int) -> str: 
+def RANK_TITLE(level: int) -> str:
     if level < 5:
-        return " STAGE 1 | YOU ARE GET PROMATED TO ROOKIE "
-    elif level >= 5 and level < 10:
-        return "STAGE 2 | YOU ARE GET PROMATED TO ADVANTAGE "
-    elif level >=10 and level < 15:
-        return "STAGE 3 | YOU ARE GET PROMATED TO SUPERSTAR "
-    elif level >= 15 and level < 20:
-        return "STAGE 4 | YOU ARE GET PROMATED TO LEGENDARY "
-    elif level >=20 and level < 25:
-        return "STAGE 5 | YOU ARE GET PROMATED TO MASTER "
+        return "STAGE 1 | YOU HAVE BEEN PROMOTED TO ROOKIE"
+    elif level < 10:
+        return "STAGE 2 | YOU HAVE BEEN PROMOTED TO ADVANTAGE"
+    elif level < 15:
+        return "STAGE 3 | YOU HAVE BEEN PROMOTED TO SUPERSTAR"
+    elif level < 20:
+        return "STAGE 4 | YOU HAVE BEEN PROMOTED TO LEGENDARY"
+    elif level < 25:
+        return "STAGE 5 | YOU HAVE BEEN PROMOTED TO MASTER"
     else:
-        return "STAGE 6 |  Protagonist (Max Aura) "        
+        return "STAGE 6 | YOU HAVE BEEN PROMOTED TO PROTAGONIST (Max Aura)"       
 
 
 # MOOD STATUS
-#adding animation 
+#adding animation later
+def MOOD_STATUS(hunger: int) -> str:
 
-def get_mood_status(hunger : int ) -> str:
     if hunger >= 80:
-        return ""
+        return "HAPPY AND FULL ENRGY"
     elif hunger >= 50:
-        return ""
+        return " DOING OKKK"
     elif hunger >= 25:
-        return ""
+        return " NEED FOOD ."
     elif hunger > 0:
-        return ""
+        return " STRAVING...!"
     else:
-        return ""
+        return "DEAD................"
     
-
-
-def render_progress_bar(current_val: int, max_val: int, total_blocks: int = 10) -> str:
+#RENDER PROGRESS BAR
+def RENDER_PROGRESS_BAR(current_val: int, max_val: int, total_blocks: int = 10) -> str:
+     
      if max_val <= 0:
         max_val = 1
         ratio = current_val / max_val
@@ -86,38 +89,40 @@ def render_progress_bar(current_val: int, max_val: int, total_blocks: int = 10) 
             bar_string = ""
             for i in range(total_blocks):
                 if i < filled_count:
-                     bar_string = bar_string + "......."
+                     bar_string = bar_string + ""
             else:
-                bar_string = bar_string + "##"
+                bar_string = bar_string + ""
 
         percentage = int(ratio * 100)
         return f"{bar_string} `{current_val}/{max_val}` ({percentage}%)"
 
-            
-
-
-            
-
-
         
 
-    
-  
-if __name__ == "__main__":
-    print("=== PET ROSTER ===")
-    for key, pet in PET_CATALOG.items():
-        print(f"  {pet['emoji']} {key:6} -> {pet['species_name']} (atk {pet['base_atk']})")
+def get_pet(pet_name):
+   
+    if pet_name in PET_CATALOG:
+        return PET_CATALOG[pet_name]
+    else:
+        return PET_CATALOG["cat"]
 
-    print()
-    print("=== RANK CHECK ===")
-    test_levels = [1, 4, 5, 11, 12, 24, 25, 39, 40, 99]
-    for lvl in test_levels:
-        print(f"  lvl {lvl:>3} -> {get_evolution_title(lvl)}")
 
-    print()
-    print("=== BAR CHECK ===")
-    print("  " + render_progress_bar(0, 100))
-    print("  " + render_progress_bar(37, 100))
-    print("  " + render_progress_bar(100, 100))
-    print("  " + render_progress_bar(999, 100))   # should clamp to 100%
-    print("  " + render_progress_bar(50, 0))      # should NOT crash
+# Converts seconds to 1h 5m style
+
+def format_playtime(seconds):
+    seconds = int(seconds)
+
+    if seconds < 0:
+        seconds = 0
+
+    if seconds < 60:
+        return f"{seconds}s"
+    elif seconds < 3600:
+        minutes = seconds // 60
+        return f"{minutes}m"
+    else:
+        hours = seconds // 3600
+        minutes = (seconds % 3600) // 60
+        if minutes == 0:
+            return f"{hours}h"
+        else:
+            return f"{hours}h {minutes}m"
