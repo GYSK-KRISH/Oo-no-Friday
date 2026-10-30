@@ -75,39 +75,39 @@ def MOOD_STATUS(hunger: int) -> str:
     
 #RENDER PROGRESS BAR
 def RENDER_PROGRESS_BAR(current_val: int, max_val: int, total_blocks: int = 10) -> str:
-     
-     if max_val <= 0:
+    if max_val <= 0:
         max_val = 1
-        ratio = current_val / max_val
         
-        if ratio > 1.0:
-            ratio = 1.0
-        elif ratio < 0.0:
-            ratio = 0.0
+    ratio = current_val / max_val
+    
+    if ratio > 1.0:
+        ratio = 1.0
+    elif ratio < 0.0:
+        ratio = 0.0
 
-            filled_count = int(round(ratio * total_blocks))
-            bar_string = ""
-            for i in range(total_blocks):
-                if i < filled_count:
-                     bar_string = bar_string + ""
-            else:
-                bar_string = bar_string + ""
+    filled_count = int(round(ratio * total_blocks))
+    bar_string = ""
+    
+    for i in range(total_blocks):
+        if i < filled_count:
+            bar_string = bar_string + "="
+        else:
+            bar_string = bar_string + "-"
 
-        percentage = int(ratio * 100)
-        return f"{bar_string} `{current_val}/{max_val}` ({percentage}%)"
+    percentage = int(ratio * 100)
+    return f"[{bar_string}] {current_val}/{max_val} ({percentage}%)"
 
-        
 
+# Helper to safely get a pet from the catalog
 def get_pet(pet_name):
-   
     if pet_name in PET_CATALOG:
         return PET_CATALOG[pet_name]
     else:
+        # Default to cat if the pet name isn't found
         return PET_CATALOG["cat"]
 
 
 # Converts seconds to 1h 5m style
-
 def format_playtime(seconds):
     seconds = int(seconds)
 
