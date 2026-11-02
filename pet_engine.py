@@ -1,4 +1,3 @@
-# pet_engine.py
 import sqlite3
 import time
 from datetime import datetime
