@@ -123,7 +123,7 @@ def update_pet_customization(user_id: str, species: str = None, new_name: str = 
 def get_or_create_boss(guild_id: str) -> dict:
     conn = sqlite3.connect(DATABASE_NAME)
     conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
+    cursor = conn.cursor()   
 
     cursor.execute("SELECT * FROM server_boss WHERE guild_id = ?", (str(guild_id),))
     row = cursor.fetchone()
