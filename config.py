@@ -20,27 +20,29 @@ DATABASE_NAME = "pet_data.db"
 PET_CATALOG = {
     "cat": {
         "name": "CAT",
-        "emoji" : "🐱",
-        "ASSEST URL": "assets/pets/bobcat.png",
+        "emoji": "🐱",
+        "ASSEST URL": "https://raw.githubusercontent.com/GYSK-KRISH/Oo-no-Friday/main/assets/pets/bobcat.png",
+        "base_atk": 12,
     },
     "dog": {
         "name": "DOG",
         "emoji": "🐶",
-        "ASSEST URL": "assets/pets/dog-bed-cushion.png",
+        "ASSEST URL": "https://raw.githubusercontent.com/GYSK-KRISH/Oo-no-Friday/main/assets/pets/dog-bed-cushion.png",
+        "base_atk": 15,
     },
     "fox": {
         "name": "FOX",
         "emoji": "🦊",
-        "ASSEST URL": "assets/pets/kitsune-fox-spirit.png",
+        "ASSEST URL": "https://raw.githubusercontent.com/GYSK-KRISH/Oo-no-Friday/main/assets/pets/kitsune-fox-spirit.png",
+        "base_atk": 14,
     },
     "horse": {
         "name": "HORSE",
         "emoji": "🐴",
-        "ASSEST URL": "assets/pets/farm-horse-brown.png",
+        "ASSEST URL": "https://raw.githubusercontent.com/GYSK-KRISH/Oo-no-Friday/main/assets/pets/farm-horse-brown.png",
+        "base_atk": 18,
     }
-
 }
-
 
 # RANK TITLE FOR A LEVEL 
 def RANK_TITLE(level: int) -> str:
