@@ -136,6 +136,7 @@ def get_or_create_boss(guild_id: str) -> dict:
         conn.commit()
         cursor.execute("SELECT * FROM server_boss WHERE guild_id = ?", (str(guild_id),))
         row = cursor.fetchone()
+        
 
     boss_data = dict(row)
     conn.close()
