@@ -128,3 +128,8 @@ def format_playtime(seconds):
             return f"{hours}h"
         else:
             return f"{hours}h {minutes}m"
+
+# Aliases so views.py and pet_engine.py can import them
+get_evolution_title = RANK_TITLE
+get_mood_status = MOOD_STATUS
+render_progress_bar = RENDER_PROGRESS_BAR
